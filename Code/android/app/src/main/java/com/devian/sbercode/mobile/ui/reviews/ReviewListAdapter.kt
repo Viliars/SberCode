@@ -15,7 +15,7 @@ class ReviewListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.review_item, parent, false)
         return NewsViewHolder(view)
     }
 
@@ -25,6 +25,15 @@ class ReviewListAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun getLastItemId(): String {
+        return if (list.isEmpty())
+            "0"
+        else
+            list[list.size-1].id
+    }
+
+    fun getList(): List<ReviewEntity> = list
 
     fun setReviews(reviews : List<ReviewEntity>) {
         list = reviews

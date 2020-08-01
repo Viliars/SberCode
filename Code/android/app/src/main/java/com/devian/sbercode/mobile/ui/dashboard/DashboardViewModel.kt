@@ -21,7 +21,6 @@ class DashboardViewModel @Inject constructor(
     val dailyInfo = ObservableField<DailyInfoEntity>()
 
     fun updateDailyInfo() {
-        println("KEKW updateDailyInfo")
         errorMessage.set(null)
         showLoading.set(true)
 

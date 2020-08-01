@@ -2,17 +2,14 @@ package com.devian.sbercode.mobile.network
 
 import com.devian.sbercode.mobile.network.model.*
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ServiceApi {
 
     /* ----- GET ----- */
 
     @GET("/v1/reviews")
-    fun getReviews(): Single<List<ApiReview>>
+    fun getReviews(@Query(value = "lastId") lastId: String): Single<List<ApiReview>>
 
     @GET("/v1/classes")
     fun getClasses(): Single<List<ApiClass>>

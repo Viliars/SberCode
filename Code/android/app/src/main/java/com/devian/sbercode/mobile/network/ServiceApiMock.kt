@@ -2,11 +2,26 @@ package com.devian.sbercode.mobile.network
 
 import com.devian.sbercode.mobile.network.model.*
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 
 class ServiceApiMock : ServiceApi {
 
-    override fun getReviews(): Single<List<ApiReview>> {
-        return Single.just(apiReviews)
+    override fun getReviews(lastId: String): Single<List<ApiReview>> {
+        val id = lastId.toInt()
+        val res = mutableListOf<ApiReview>()
+        if (id == 0) {
+            for (i in 24 downTo 18) {
+                res.add(ApiReview(i.toString(), "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", apiClasses[0]))
+            }
+        } else {
+            for (i in id-1 downTo id-7) {
+                if (i>0) {
+                    res.add(ApiReview(i.toString(), "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", apiClasses[0]))
+                }
+            }
+        }
+
+        return Single.just(res.toList()).timeout(3000, TimeUnit.SECONDS)
     }
 
     override fun getClasses(): Single<List<ApiClass>> {
@@ -80,8 +95,44 @@ class ServiceApiMock : ServiceApi {
             "499999001",
             "Сбербанк Онлайн",
             "3",
-            "bla bla",
+            "bla bla bla",
             apiClasses[1]
+        ),
+        ApiReview(
+            "1",
+            "2019",
+            "499999001",
+            "Сбербанк Онлайн",
+            "1",
+            "еще отзыв",
+            apiClasses[0]
+        ),
+        ApiReview(
+            "1",
+            "2019",
+            "499999001",
+            "Сбербанк Онлайн",
+            "1",
+            "Хороший отзыв",
+            apiClasses[0]
+        ),
+        ApiReview(
+            "1",
+            "2019",
+            "499999001",
+            "Сбербанк Онлайн",
+            "1",
+            "Плохой отзыв",
+            apiClasses[0]
+        ),
+        ApiReview(
+            "1",
+            "2019",
+            "499999001",
+            "Сбербанк Онлайн",
+            "1",
+            "Отзыв номер пять",
+            apiClasses[0]
         )
     )
 }

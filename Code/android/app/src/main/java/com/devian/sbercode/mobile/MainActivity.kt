@@ -5,11 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.add
 import com.devian.sbercode.mobile.ui.dashboard.DashboardFragment
 import com.devian.sbercode.mobile.ui.reviews.ReviewsFragment
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 

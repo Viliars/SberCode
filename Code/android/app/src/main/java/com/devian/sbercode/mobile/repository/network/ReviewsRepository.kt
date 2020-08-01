@@ -18,8 +18,8 @@ class ReviewsRepository @Inject constructor(
     private val apiDailyInfoMapper: ApiDailyInfoMapper
 ) {
 
-    fun getReviews(): Single<List<ReviewEntity>> {
-        return serviceApi.getReviews().map { it ->
+    fun getReviews(lastId: String): Single<List<ReviewEntity>> {
+        return serviceApi.getReviews(lastId).map { it ->
             it.map { apiReviewMapper.transform(it) }
         }.subscribeOnIo()
     }
