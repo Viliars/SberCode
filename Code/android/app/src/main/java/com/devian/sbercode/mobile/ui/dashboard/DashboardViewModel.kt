@@ -33,7 +33,6 @@ class DashboardViewModel @Inject constructor(
 
         date.set(ZonedDateTime.now().format(DateFormat.DD_MMMM_HH_MM))
 
-        compositeDisposable?.dispose()
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
             reviewsRepository.getReviews().observeOnUi()
@@ -47,5 +46,10 @@ class DashboardViewModel @Inject constructor(
                     showError.set(true)
                 })
         )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable?.dispose()
     }
 }

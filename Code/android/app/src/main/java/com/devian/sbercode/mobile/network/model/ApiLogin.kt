@@ -7,7 +7,10 @@ data class ApiLoginResult(
     val success: Boolean,
 
     @SerializedName("token")
-    val token: String
+    val token: String,
+
+    @SerializedName("error_info")
+    val error: String
 )
 
 data class ApiLoginData(

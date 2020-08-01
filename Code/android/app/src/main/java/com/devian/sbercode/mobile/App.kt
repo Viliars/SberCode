@@ -15,7 +15,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         initIoc()
-        initPackages()
         initThreeTen()
     }
 
@@ -31,10 +30,6 @@ class App : Application() {
             AppModule,
             ServerModule
         )
-    }
-
-    private fun initPackages() {
-        val scope = Toothpick.openScope(Scopes.APP)
     }
 
     private fun initThreeTen() {

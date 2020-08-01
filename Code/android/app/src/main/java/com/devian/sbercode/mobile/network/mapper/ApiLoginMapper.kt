@@ -11,14 +11,16 @@ class ApiLoginMapper @Inject constructor() {
     fun transform(apiLoginResult: ApiLoginResult): LoginResultEntity {
         return LoginResultEntity(
             success = apiLoginResult.success,
-            token = apiLoginResult.token
+            token = apiLoginResult.token,
+            error = apiLoginResult.error
         )
     }
 
     fun transform(loginResultEntity: LoginResultEntity): ApiLoginResult {
         return ApiLoginResult(
             success = loginResultEntity.success,
-            token = loginResultEntity.token
+            token = loginResultEntity.token,
+            error = loginResultEntity.error
         )
     }
 

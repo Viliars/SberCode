@@ -28,7 +28,8 @@ class ServiceApiMock : ServiceApi {
         return Single.just(
             ApiLoginResult(
                 success = true,
-                token = "65ds4sdf564sdf854sdf846"
+                token = "65ds4sdf564sdf854sdf846",
+                error = ""
             )
         )
     }

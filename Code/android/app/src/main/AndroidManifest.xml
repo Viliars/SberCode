@@ -23,7 +23,11 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>
