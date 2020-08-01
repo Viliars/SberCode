@@ -48,13 +48,15 @@ class AuthViewModel  @Inject constructor(
                     login = username.get()!!,
                     passHash = password.get()!!.sha256()
                 )
-            ).observeOnUi().subscribe({
-                if (it.success) {
+            ).observeOnUi()
+                .doAfterTerminate {
                     setLoading(false)
+                }
+                .subscribe({
+                if (it.success) {
                     loginSuccess.set(true)
                     settingsPreferences.authToken = it.token
                 } else {
-                    setLoading(false)
                     errorMessage.set(it.error)
                 }
             }, {
