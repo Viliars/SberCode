@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">СберОтзывы</string>
+    <string name="title_dashboard">Дашборд</string>
+    <string name="title_notifications">Отзывы</string>
+
+    <string name="error_loading">Произошла ошибка при загрузке, попробйте позже</string>
+    <string name="back">Назад</string>
+</resources>
