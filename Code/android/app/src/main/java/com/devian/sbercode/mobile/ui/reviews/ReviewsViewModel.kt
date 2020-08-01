@@ -4,7 +4,9 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.devian.sbercode.mobile.domain.model.ReviewEntity
+import com.devian.sbercode.mobile.domain.model.ReviewWrongClassEntity
 import com.devian.sbercode.mobile.extensions.observeOnUi
+import com.devian.sbercode.mobile.network.model.ApiResponse
 import com.devian.sbercode.mobile.repository.local.SettingsPreferences
 import com.devian.sbercode.mobile.repository.network.ReviewsRepository
 import io.reactivex.disposables.CompositeDisposable
@@ -18,6 +20,7 @@ class ReviewsViewModel @Inject constructor(
     private var compositeDisposable: CompositeDisposable? = null
 
     val reviews = ObservableField<List<ReviewEntity>>()
+    val errorPushed = ObservableField<ApiResponse>()
 
     val errorMessage = ObservableField<String>()
     val loading = ObservableBoolean(false)
@@ -61,6 +64,26 @@ class ReviewsViewModel @Inject constructor(
                     if (!it.isNullOrEmpty()) {
                         settingsPreferences.reviewClasses = it
                     }
+                }, {
+                    loading.set(false)
+                    errorMessage.set(it.message)
+                })
+        )
+    }
+
+    fun pushError(wrongClassEntity: ReviewWrongClassEntity) {
+        errorPushed.set(null)
+        loading.set(true)
+        errorMessage.set(null)
+
+        compositeDisposable = CompositeDisposable()
+        compositeDisposable!!.add(
+            reviewsRepository.pushReviewError(wrongClassEntity).observeOnUi()
+                .doAfterTerminate {
+                    loading.set(false)
+                }
+                .subscribe({
+                    errorPushed.set(it)
                 }, {
                     loading.set(false)
                     errorMessage.set(it.message)

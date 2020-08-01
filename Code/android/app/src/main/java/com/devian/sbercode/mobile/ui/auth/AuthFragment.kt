@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.devian.sbercode.mobile.AuthListener
 import com.devian.sbercode.mobile.R
 import com.devian.sbercode.mobile.databinding.FragmentAuthBinding
 import com.devian.sbercode.mobile.extensions.addOnPropertyChanged

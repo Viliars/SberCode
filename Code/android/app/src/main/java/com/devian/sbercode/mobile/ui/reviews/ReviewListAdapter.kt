@@ -1,15 +1,17 @@
 package com.devian.sbercode.mobile.ui.reviews
 
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.devian.sbercode.mobile.R
 import com.devian.sbercode.mobile.domain.model.ReviewEntity
 
 class ReviewListAdapter(
-    private var list: List<ReviewEntity>,
+    private var list: ArrayList<ReviewEntity>,
     private var listener: OnNewsItemClickedListener
 ) : RecyclerView.Adapter<NewsViewHolder>() {
 
@@ -33,9 +35,20 @@ class ReviewListAdapter(
             list[list.size-1].id
     }
 
+    fun getItemIdByPosition(position: Int): String {
+        if (list.isNullOrEmpty() || list.size - 1 < position) return ""
+        return list[position].id
+    }
+
     fun getList(): List<ReviewEntity> = list
 
-    fun setReviews(reviews : List<ReviewEntity>) {
+    fun removeItem(position: Int) {
+        if (list.isNullOrEmpty() || list.size - 1 < position) return
+        list.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    fun setReviews(reviews : ArrayList<ReviewEntity>) {
         list = reviews
         notifyDataSetChanged()
     }
@@ -47,13 +60,15 @@ class ReviewListAdapter(
 }
 
 class NewsViewHolder(private val view: View) :
-    RecyclerView.ViewHolder(view) {
+    RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
 
+    private var mCardView: CardView
     private var mDate: TextView? = null
     private var mTitle: TextView? = null
     private var mDescription: TextView? = null
 
     init {
+        mCardView = itemView.findViewById(R.id.cardView)
         mDate = itemView.findViewById(R.id.tvDate)
         mTitle = itemView.findViewById(R.id.tvTitle)
         mDescription = itemView.findViewById(R.id.tvDescription)
@@ -63,6 +78,14 @@ class NewsViewHolder(private val view: View) :
         mDate?.text = review.date
         mTitle?.text = review.text
         mDescription?.text = review.app_id
-        view.setOnClickListener { clickedListener.onItemClicked(review) }
+        view.setOnClickListener { clickedListener.onItemClicked(review)}
+        mCardView.setOnCreateContextMenuListener(this)
     }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        menu?.setHeaderTitle("Выберите опцию");
+        menu?.add(this.adapterPosition, 1000, 0, "Неверная категория")
+        menu?.add(this.adapterPosition, 1001, 1, "Ответить на отзыв")
+    }
+
 }

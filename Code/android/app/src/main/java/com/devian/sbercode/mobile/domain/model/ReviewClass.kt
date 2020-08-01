@@ -4,8 +4,8 @@ import com.devian.sbercode.mobile.network.model.ApiReview
 import com.google.gson.annotations.SerializedName
 
 class ReviewClassEntity(
-    val id: String,
-    val name: String
+    val id: String = "",
+    val name: String = ""
 )
 
 class ReviewWrongClassEntity(

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/cardView"
     android:clickable="true"
     android:focusable="true">
 
@@ -10,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen32"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="@dimen/dimen16"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +25,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto_medium"
             android:paddingStart="@dimen/news_content_padding"
             android:paddingTop="@dimen/news_content_padding"
             android:paddingEnd="@dimen/news_content_padding"
             android:paddingBottom="@dimen/news_content_padding"
+            android:text="Дата наверно"
             android:textColor="@color/grey"
             android:textSize="@dimen/small_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/menuButton"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,10 +48,10 @@
             android:paddingTop="@dimen/news_content_padding"
             android:paddingEnd="@dimen/news_content_padding"
             android:paddingBottom="@dimen/news_content_padding"
-            android:text='"Меркурий" теперь работает на смартфоне'
+            android:text="Отзыв №1"
             android:textColor="@color/grey"
             android:textSize="@dimen/medium_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvDate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
@@ -60,13 +64,22 @@
             android:paddingTop="@dimen/news_content_padding"
             android:paddingEnd="@dimen/news_content_padding"
             android:paddingBottom="@dimen/news_content_padding"
-            android:text="Вы сможете принимать и гасить ветеринарные документы прямо во время приемки груза."
+            android:text="Какая то инфа"
             android:textSize="@dimen/small_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
+        <ImageButton
+            android:id="@+id/menuButton"
+            style="?android:attr/actionOverflowButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openContextMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

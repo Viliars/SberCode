@@ -55,15 +55,15 @@ class ServiceApiMock : ServiceApi {
 
     private val apiClasses = listOf(
         ApiClass(
-            id = "1",
+            id = "1000",
             name = "Хлебный отдел"
         ),
         ApiClass(
-            id = "2",
+            id = "1001",
             name = "Молочный отдел"
         ),
         ApiClass(
-            id = "3",
+            id = "1002",
             name = "Мясной отдел"
         )
     )

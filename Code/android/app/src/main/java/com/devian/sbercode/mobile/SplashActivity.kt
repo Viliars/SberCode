@@ -22,7 +22,3 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 }
-
-interface AuthListener {
-    fun onAuthSuccess()
-}
