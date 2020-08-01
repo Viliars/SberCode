@@ -26,7 +26,7 @@ class ReviewListAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    fun setNews(reviews : List<ReviewEntity>) {
+    fun setReviews(reviews : List<ReviewEntity>) {
         list = reviews
         notifyDataSetChanged()
     }

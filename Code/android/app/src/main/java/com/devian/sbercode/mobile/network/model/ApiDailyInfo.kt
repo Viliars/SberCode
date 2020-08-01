@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class ApiDailyInfo(
 
     @SerializedName("excellentReviews")
-    val excellentReviews: Int,
+    val excellentReviews: String,
 
     @SerializedName("badReviews")
-    val badReviews: Int,
+    val badReviews: String,
 
     @SerializedName("highlights")
     val highlights: List<ApiReview>,
@@ -23,5 +23,5 @@ data class ApiTopClass(
     val _class: ApiClass,
 
     @SerializedName("count")
-    val count: Int
+    val count: String
 )

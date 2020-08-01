@@ -16,8 +16,8 @@ class ServiceApiMock : ServiceApi {
     override fun getDailyInfo(): Single<ApiDailyInfo> {
         return Single.just(
             ApiDailyInfo(
-                excellentReviews = 48,
-                badReviews = 15,
+                excellentReviews = "48",
+                badReviews = "15",
                 highlights = apiReviews,
                 topClasses = apiTopClasses
             )
@@ -56,11 +56,11 @@ class ServiceApiMock : ServiceApi {
     private val apiTopClasses = listOf(
         ApiTopClass(
             _class = apiClasses[0],
-            count = 8
+            count = "8"
         ),
         ApiTopClass(
             _class = apiClasses[2],
-            count = 5
+            count = "5"
         )
     )
 

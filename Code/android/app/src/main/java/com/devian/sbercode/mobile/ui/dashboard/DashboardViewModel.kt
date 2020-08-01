@@ -3,12 +3,10 @@ package com.devian.sbercode.mobile.ui.dashboard
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.devian.sbercode.mobile.extensions.DateFormat
-import com.devian.sbercode.mobile.extensions.format
+import com.devian.sbercode.mobile.domain.model.DailyInfoEntity
 import com.devian.sbercode.mobile.extensions.observeOnUi
 import com.devian.sbercode.mobile.repository.network.ReviewsRepository
 import io.reactivex.disposables.CompositeDisposable
-import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
@@ -18,32 +16,26 @@ class DashboardViewModel @Inject constructor(
     private var compositeDisposable: CompositeDisposable? = null
 
     val showLoading = ObservableBoolean(false)
-    val showError = ObservableBoolean(false)
-    val date = ObservableField<String>("")
+    val errorMessage = ObservableField<String>()
 
-    val reviews = ObservableField<String>("")
+    val dailyInfo = ObservableField<DailyInfoEntity>()
 
-    init {
-        updateData()
-    }
-
-    fun updateData() {
-        showError.set(false)
+    fun updateDailyInfo() {
+        println("KEKW updateDailyInfo")
+        errorMessage.set(null)
         showLoading.set(true)
-
-        date.set(ZonedDateTime.now().format(DateFormat.DD_MMMM_HH_MM))
 
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
-            reviewsRepository.getReviews().observeOnUi()
+            reviewsRepository.getDailyInfo().observeOnUi()
                 .doAfterTerminate {
                     showLoading.set(false)
                 }
                 .subscribe({
-                    reviews.set("Отзывов: " + it.size.toString())
+                    dailyInfo.set(it)
                 }, {
                     showLoading.set(false)
-                    showError.set(true)
+                    errorMessage.set(it.message)
                 })
         )
     }

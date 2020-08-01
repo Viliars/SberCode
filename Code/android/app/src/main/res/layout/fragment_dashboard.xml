@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:onRefreshListener="@{() -> vm.updateData()}"
+            app:onRefreshListener="@{() -> vm.updateDailyInfo()}"
             app:refreshing="@{vm.showLoading}">
 
             <ScrollView
@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
-                        android:text="@{vm.reviews}"
+                        android:text="@{vm.dailyInfo.excellentReviews}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
