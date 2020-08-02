@@ -15,6 +15,8 @@ russian_stopwords = stopwords.words("russian")
 
 model = joblib.load('model.pkl')
 vectorizer = joblib.load('vectorize.pkl')
+model_ton = joblib.load('model_ton.pkl')
+vectorizer_ton = joblib.load('vectorize_ton.pkl')
 
 
 def classify(text: str):
@@ -47,10 +49,12 @@ def classify(text: str):
         all_texts[i] = ' '.join([token for token in all_texts[i] if token not in russian_stopwords])
 
     X = vectorizer.transform(all_texts)
+    X_ton = vectorizer_ton.transform(all_texts)
 
     answer = model.predict(X)
+    answer_ton = model_ton.predict(X_ton)
 
-    return int(answer[0])
+    return int(answer[0]), int(answer_ton[0])
 
 
 

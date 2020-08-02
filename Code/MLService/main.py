@@ -9,7 +9,14 @@ app = FastAPI()
 
 @app.get("/class")
 def root(requests: List[Сlassify]):
-    answer = [{"class": classify(request.text), "uuid": request.uuid} for request in requests]
+    answer = []
+    for request in requests:
+        result, result_ton = classify(request.text)
+        answer.append({
+            "uuid": request.uuid,
+            "class": result,
+            "class_ton": result_ton
+        })
 
     response = jsonable_encoder(answer)
 
