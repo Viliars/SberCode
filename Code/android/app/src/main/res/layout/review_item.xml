@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cardView"
+    android:layout_margin="10dp"
+    android:background="@drawable/tile_review"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen32"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/dimen16"
-        android:layout_marginBottom="32dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/tile_review"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/ivType"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="40dp"
             android:fontFamily="@font/roboto_medium"
             android:paddingStart="@dimen/news_content_padding"
             android:paddingTop="@dimen/news_content_padding"
             android:paddingEnd="@dimen/news_content_padding"
             android:paddingBottom="@dimen/news_content_padding"
             android:text="Дата наверно"
-            android:textColor="@color/grey"
+            android:textColor="@color/dark_grey"
             android:textSize="@dimen/small_text_size"
             app:layout_constraintEnd_toStartOf="@+id/menuButton"
             app:layout_constraintHorizontal_bias="0.0"
@@ -40,9 +52,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:fontFamily="@font/roboto_bold"
             android:paddingStart="@dimen/news_content_padding"
             android:paddingTop="@dimen/news_content_padding"
@@ -59,17 +72,19 @@
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:fontFamily="@font/roboto_regular"
             android:paddingStart="@dimen/news_content_padding"
             android:paddingTop="@dimen/news_content_padding"
             android:paddingEnd="@dimen/news_content_padding"
             android:paddingBottom="@dimen/news_content_padding"
             android:text="Какая то инфа"
+            android:textColor="@color/dark_grey"
             android:textSize="@dimen/small_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvText" />
 
         <ImageButton
             android:id="@+id/menuButton"
@@ -77,8 +92,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="openContextMenu"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_blue_bright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/menuButton"
+            app:layout_constraintStart_toEndOf="@+id/tvText"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_star_24" />
+
+            <TextView
+                android:id="@+id/tvMark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="5"
+                android:textAlignment="center"
+                android:textColor="#FF6868"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

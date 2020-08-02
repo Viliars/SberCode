@@ -4,6 +4,7 @@ import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -62,19 +63,31 @@ class ReviewListAdapter(
 class NewsViewHolder(private val view: View) :
     RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
 
+    private var mType: ImageView? = null
+    private var mMark: TextView? = null
     private var mCardView: CardView
     private var mDate: TextView? = null
     private var mTitle: TextView? = null
     private var mDescription: TextView? = null
 
     init {
+        mType = itemView.findViewById(R.id.ivType)
+        mMark = itemView.findViewById(R.id.tvMark)
         mCardView = itemView.findViewById(R.id.cardView)
         mDate = itemView.findViewById(R.id.tvDate)
-        mTitle = itemView.findViewById(R.id.tvTitle)
+        mTitle = itemView.findViewById(R.id.tvText)
         mDescription = itemView.findViewById(R.id.tvDescription)
     }
 
     fun bind(review: ReviewEntity, clickedListener: ReviewListAdapter.OnNewsItemClickedListener) {
+
+        val n = (1..2).random()
+        if (n == 1)
+            mType?.setBackgroundResource(R.drawable.ic_baseline_bug_report_24)
+        else
+            mType?.setBackgroundResource(R.drawable.ic_baseline_add_circle_24)
+
+        mMark?.text = review.rating
         mDate?.text = review.date
         mTitle?.text = review.text
         mDescription?.text = review.app_id
