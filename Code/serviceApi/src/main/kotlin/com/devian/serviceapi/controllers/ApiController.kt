@@ -31,9 +31,14 @@ class ApiController {
         val id = lastId.toInt()
 
         val classId = database.userRepository.findByToken(token).get().classId
-        val allReviews = database.reviewRepository.findAll()
+        var allReviews = database.reviewRepository.findAll()
                 .filter { r -> r.clazz == classId }
                 .sortedByDescending { it.id }
+
+        if (classId == "800") {
+            allReviews = database.reviewRepository.findAll()
+                    .sortedByDescending { it.id }
+        }
 
         if (id != 0) {
             allReviews.filter { r -> r.id < id }
