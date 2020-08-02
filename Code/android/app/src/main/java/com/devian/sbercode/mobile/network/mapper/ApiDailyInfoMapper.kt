@@ -25,14 +25,14 @@ class ApiDailyInfoMapper @Inject constructor(
 
     fun transform(apiTopClass: ApiTopClass): TopClassEntity {
         return TopClassEntity(
-            _class = apiReviewMapper.transform(apiTopClass._class),
+            _class = apiTopClass._class,
             count = apiTopClass.count
         )
     }
 
     fun transform(topClassEntity: TopClassEntity): ApiTopClass {
         return ApiTopClass(
-            _class = apiReviewMapper.transform(topClassEntity._class),
+            _class = topClassEntity._class,
             count = topClassEntity.count
         )
     }

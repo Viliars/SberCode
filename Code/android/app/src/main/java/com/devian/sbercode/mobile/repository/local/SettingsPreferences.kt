@@ -11,7 +11,7 @@ class SettingsPreferences  @Inject constructor(
     private val gson: Gson
 ): ISettingsPreferences {
     override var authToken: String
-        get() = preferences.getString(AUTH_TOKEN)
+        get() = preferences.getString(AUTH_TOKEN, "")
         set(value) = preferences.putString(AUTH_TOKEN, value)
 
     override var reviewClasses: List<ReviewClassEntity>

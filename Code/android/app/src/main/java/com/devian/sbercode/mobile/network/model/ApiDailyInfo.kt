@@ -20,8 +20,8 @@ data class ApiDailyInfo(
 data class ApiTopClass(
 
     @SerializedName("class")
-    val _class: ApiClass,
+    val _class: String,
 
     @SerializedName("count")
-    val count: String
+    val count: Int
 )

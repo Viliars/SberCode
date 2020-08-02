@@ -4,6 +4,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.devian.sbercode.mobile.domain.model.DailyInfoEntity
+import com.devian.sbercode.mobile.extensions.asyncIo
 import com.devian.sbercode.mobile.extensions.observeOnUi
 import com.devian.sbercode.mobile.repository.network.ReviewsRepository
 import io.reactivex.disposables.CompositeDisposable
@@ -26,7 +27,7 @@ class DashboardViewModel @Inject constructor(
 
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
-            reviewsRepository.getDailyInfo().observeOnUi()
+            reviewsRepository.getDailyInfo().asyncIo()
                 .doAfterTerminate {
                     showLoading.set(false)
                 }

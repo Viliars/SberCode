@@ -5,6 +5,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.devian.sbercode.mobile.domain.model.ReviewEntity
 import com.devian.sbercode.mobile.domain.model.ReviewWrongClassEntity
+import com.devian.sbercode.mobile.extensions.asyncIo
 import com.devian.sbercode.mobile.extensions.observeOnUi
 import com.devian.sbercode.mobile.network.model.ApiResponse
 import com.devian.sbercode.mobile.repository.local.SettingsPreferences
@@ -40,7 +41,7 @@ class ReviewsViewModel @Inject constructor(
 
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
-            reviewsRepository.getReviews(lastId).observeOnUi()
+            reviewsRepository.getReviews(lastId).asyncIo()
                 .doAfterTerminate {
                     loading.set(false)
                 }
@@ -56,7 +57,7 @@ class ReviewsViewModel @Inject constructor(
     private fun fetchClasses() {
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
-            reviewsRepository.getClasses().observeOnUi()
+            reviewsRepository.getClasses().asyncIo()
                 .doAfterTerminate {
                     loading.set(false)
                 }
@@ -78,13 +79,14 @@ class ReviewsViewModel @Inject constructor(
 
         compositeDisposable = CompositeDisposable()
         compositeDisposable!!.add(
-            reviewsRepository.pushReviewError(wrongClassEntity).observeOnUi()
+            reviewsRepository.pushReviewError(wrongClassEntity).asyncIo()
                 .doAfterTerminate {
                     loading.set(false)
                 }
                 .subscribe({
                     errorPushed.set(it)
                 }, {
+                    val test = it
                     loading.set(false)
                     errorMessage.set(it.message)
                 })

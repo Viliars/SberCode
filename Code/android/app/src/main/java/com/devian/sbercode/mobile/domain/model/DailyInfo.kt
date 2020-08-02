@@ -10,6 +10,6 @@ data class DailyInfoEntity(
 
 data class TopClassEntity(
 
-    val _class: ReviewClassEntity,
-    val count: String
+    val _class: String,
+    val count: Int
 )

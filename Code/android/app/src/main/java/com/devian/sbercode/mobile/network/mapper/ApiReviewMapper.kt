@@ -12,25 +12,25 @@ class ApiReviewMapper @Inject constructor() {
 
     fun transform(apiReview: ApiReview): ReviewEntity {
         return ReviewEntity(
-            id = apiReview.id,
+            id = apiReview.id.toString(),
             date = apiReview.date,
             app_id = apiReview.app_id,
             app_name = apiReview.app_name,
             rating = apiReview.rating,
             text = apiReview.text,
-            _class = transform(apiReview._class)
+            _class = apiReview._class
         )
     }
 
     fun transform(reviewEntity: ReviewEntity): ApiReview {
         return ApiReview(
-            id = reviewEntity.id,
+            id = reviewEntity.id.toInt(),
             date = reviewEntity.date,
             app_id = reviewEntity.app_id,
             app_name = reviewEntity.app_name,
             rating = reviewEntity.rating,
             text = reviewEntity.text,
-            _class = transform(reviewEntity._class)
+            _class = reviewEntity._class
         )
     }
 
@@ -50,14 +50,14 @@ class ApiReviewMapper @Inject constructor() {
 
     fun transform(apiWrongClass: ApiWrongClass): ReviewWrongClassEntity {
         return ReviewWrongClassEntity(
-            review = transform(apiWrongClass.review),
+            reviewId = apiWrongClass.reviewId,
             rightClassId = apiWrongClass.rightClassId
         )
     }
 
     fun transform(wrongClassEntity: ReviewWrongClassEntity): ApiWrongClass {
         return ApiWrongClass(
-            review = transform(wrongClassEntity.review),
+            reviewId = wrongClassEntity.reviewId,
             rightClassId = wrongClassEntity.rightClassId
         )
     }

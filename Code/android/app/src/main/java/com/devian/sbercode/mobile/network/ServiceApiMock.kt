@@ -1,5 +1,6 @@
 package com.devian.sbercode.mobile.network
 
+import com.devian.sbercode.mobile.domain.model.LoginDataEntity
 import com.devian.sbercode.mobile.network.model.*
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -11,12 +12,12 @@ class ServiceApiMock : ServiceApi {
         val res = mutableListOf<ApiReview>()
         if (id == 0) {
             for (i in 24 downTo 18) {
-                res.add(ApiReview(i.toString(), "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", apiClasses[0]))
+                res.add(ApiReview(i, "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", "1000"))
             }
         } else {
             for (i in id-1 downTo id-7) {
                 if (i>0) {
-                    res.add(ApiReview(i.toString(), "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", apiClasses[0]))
+                    res.add(ApiReview(i, "2019", "499999001", "Сбербанк Онлайн", "1", "Отзыв $i", "1000"))
                 }
             }
         }
@@ -39,11 +40,11 @@ class ServiceApiMock : ServiceApi {
         )
     }
 
-    override fun login(loginData: ApiLoginData): Single<ApiLoginResult> {
+    override fun login(loginData: LoginDataEntity): Single<ApiLoginResult> {
         return Single.just(
             ApiLoginResult(
                 success = true,
-                token = "65ds4sdf564sdf854sdf846",
+                token = "3c1eb686-665f-4653-9224-72fe1ce6c8e6",
                 error = ""
             )
         )
@@ -70,69 +71,69 @@ class ServiceApiMock : ServiceApi {
 
     private val apiTopClasses = listOf(
         ApiTopClass(
-            _class = apiClasses[0],
-            count = "8"
+            _class = "1000",
+            count = 8
         ),
         ApiTopClass(
-            _class = apiClasses[2],
-            count = "5"
+            _class = "1001",
+            count = 5
         )
     )
 
     private val apiReviews = listOf(
         ApiReview(
-            "1",
+            1,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "1",
             "bla bla",
-            apiClasses[0]
+            "1000"
         ),
         ApiReview(
-            "2",
+            2,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "3",
             "bla bla bla",
-            apiClasses[1]
+            "1000"
         ),
         ApiReview(
-            "1",
+            3,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "1",
             "еще отзыв",
-            apiClasses[0]
+            "1000"
         ),
         ApiReview(
-            "1",
+            4,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "1",
             "Хороший отзыв",
-            apiClasses[0]
+            "1000"
         ),
         ApiReview(
-            "1",
+            5,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "1",
             "Плохой отзыв",
-            apiClasses[0]
+            "1000"
         ),
         ApiReview(
-            "1",
+            6,
             "2019",
             "499999001",
             "Сбербанк Онлайн",
             "1",
             "Отзыв номер пять",
-            apiClasses[0]
+            "1000"
         )
     )
 }

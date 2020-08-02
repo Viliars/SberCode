@@ -105,12 +105,12 @@ class ReviewsFragment : BaseFragment(), OnNewsItemClickedListener {
             1000 -> {
                 val popupMenu = PopupMenu(context, cardView)
                 for (c in settingsPreferences.reviewClasses) {
-                    popupMenu.menu.add(1, c.id.toInt(), c.id.toInt(), c.name);
+                    popupMenu.menu.add(1, c.id.toInt(), c.id.toInt(), c.name)
                 }
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener { it ->
                     val rightClass = ReviewWrongClassEntity(
-                        review = ReviewEntity(id = adapter.getItemIdByPosition(item.groupId)),
+                        reviewId = adapter.getItemIdByPosition(item.groupId).toInt(),
                         rightClassId = it.itemId.toString()
                     )
                     viewModel.pushError(rightClass)

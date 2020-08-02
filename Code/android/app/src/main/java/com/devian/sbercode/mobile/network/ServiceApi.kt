@@ -1,5 +1,6 @@
 package com.devian.sbercode.mobile.network
 
+import com.devian.sbercode.mobile.domain.model.LoginDataEntity
 import com.devian.sbercode.mobile.network.model.*
 import io.reactivex.Single
 import retrofit2.http.*
@@ -21,7 +22,7 @@ interface ServiceApi {
     /* ----- POST ----- */
 
     @POST("/v1/login")
-    fun login(@Body loginData: ApiLoginData): Single<ApiLoginResult>
+    fun login(@Body loginData: LoginDataEntity): Single<ApiLoginResult>
 
     @POST("/v1/pushReviewError")
     fun pushReviewError(@Body wrongClass: ApiWrongClass): Single<ApiResponse>

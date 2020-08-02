@@ -16,7 +16,7 @@ class ServiceApiProvider @Inject constructor(
     private val okHttpClient: OkHttpClient
 ) : Provider<ServiceApi> {
     override fun get(): ServiceApi {
-        val endpoint = createEndpoint()
+        val endpoint = ENDPOINT_DEVELOP
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -24,19 +24,12 @@ class ServiceApiProvider @Inject constructor(
             .baseUrl(endpoint)
             .build()
 
-        //return retrofit.create(ServiceApi::class.java)
-        return ServiceApiMock()
-    }
-
-    private fun createEndpoint(): String {
-        return when {
-            App.Environment.isRelease -> ENDPOINT_PRODUCTION
-            else -> ENDPOINT_DEVELOP
-        }
+        return retrofit.create(ServiceApi::class.java)
+        //return ServiceApiMock()
     }
 
     companion object {
-        private const val ENDPOINT_DEVELOP = "https://10.0.2.2:8080/"
-        private const val ENDPOINT_PRODUCTION = "https://devian.ws.pho.to/sbercode/"
+        private const val ENDPOINT_DEVELOP = "http://10.0.2.2:8080"
+        private const val ENDPOINT_PRODUCTION = "http://devian.ws.pho.to/sbercode/"
     }
 }

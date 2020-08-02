@@ -6,6 +6,6 @@ data class ReviewEntity(
     val app_id: String = "",
     val app_name: String = "",
     val rating: String = "",
-    val text: String? = "",
-    val _class: ReviewClassEntity = ReviewClassEntity()
+    val text: String = "",
+    val _class: String = ""
 )

@@ -9,6 +9,6 @@ class ReviewClassEntity(
 )
 
 class ReviewWrongClassEntity(
-    val review: ReviewEntity,
+    val reviewId: Int,
     val rightClassId: String
 )

@@ -9,7 +9,7 @@ data class ApiLoginResult(
     @SerializedName("token")
     val token: String,
 
-    @SerializedName("error_info")
+    @SerializedName("error")
     val error: String
 )
 

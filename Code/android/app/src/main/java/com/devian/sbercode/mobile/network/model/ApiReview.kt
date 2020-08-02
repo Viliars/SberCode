@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ApiReview(
 
     @SerializedName("id")
-    val id: String,
+    val id: Int,
 
     @SerializedName("date")
     val date: String,
@@ -20,17 +20,17 @@ data class ApiReview(
     val rating: String,
 
     @SerializedName("text")
-    val text: String?,
+    val text: String,
 
     @SerializedName("class")
-    val _class: ApiClass
+    val _class: String
 )
 
 data class ApiWrongClass(
 
-    @SerializedName("review")
-    val review: ApiReview,
+    @SerializedName("reviewId")
+    val reviewId: Int,
 
-    @SerializedName("rightClass")
+    @SerializedName("rightClassId")
     val rightClassId: String
 )
