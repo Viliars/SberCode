@@ -1,0 +1,14 @@
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (1, '98465467778', 'Сбербанк Онлайн', '1000', '2020', '5', 'Отзыв 1');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (2, '98465467778', 'Сбербанк Онлайн', '1000', '2020', '4', 'Отзыв 2');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (3, '98465467778', 'Сбербанк Онлайн', '1001', '2020', '5', 'Отзыв 3');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (4, '98465467778', 'Сбербанк Онлайн', '1001', '2020', '3', 'Отзыв 4');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (5, '98465467778', 'Сбербанк Онлайн', '1001', '2020', '3', 'Отзыв 5');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (6, '98465467778', 'Сбербанк Онлайн', '1000', '2020', '5', 'Отзыв 6');
+INSERT INTO reviews (id, app_id, app_name, clazz, date, rating, text)
+VALUES (7, '98465467778', 'Сбербанк Онлайн', '1002', '2020', '1', 'Отзыв 7');
